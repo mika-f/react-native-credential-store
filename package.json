@@ -1,0 +1,81 @@
+{
+  "name": "@natsuneko-laboratory/react-native-credential-store",
+  "version": "0.1.0-alpha.1",
+  "description": "OS-backed secure credential storage for React Native macOS and Windows",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mika-f/react-native-credential-store.git"
+  },
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "react-native": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "react-native": "./src/index.ts",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "src",
+    "macos",
+    "windows",
+    "RNSecureStore.podspec",
+    "react-native.config.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm build && node --test tests/*.test.cjs",
+    "test:macos": "bash scripts/test-macos.sh",
+    "codegen:macos": "node scripts/codegen-macos.cjs",
+    "codegen:windows": "node scripts/codegen-windows.cjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepack": "pnpm build && pnpm codegen:windows"
+  },
+  "packageManager": "pnpm@12.4.2",
+  "peerDependencies": {
+    "react-native": ">=0.81",
+    "react-native-macos": ">=0.81",
+    "react-native-windows": ">=0.81"
+  },
+  "peerDependenciesMeta": {
+    "react-native-macos": {
+      "optional": true
+    },
+    "react-native-windows": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@react-native-windows/codegen": "0.84.0",
+    "@types/react": "^19.1.4",
+    "prettier": "^3.6.2",
+    "react": "^19.1.4",
+    "react-native": "0.81.6",
+    "react-native-macos": "0.81.9",
+    "react-native-windows": "0.81.35",
+    "typescript": "^5.9.3"
+  },
+  "codegenConfig": {
+    "name": "RNSecureStoreSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "ios": {
+      "modulesProvider": {
+        "RNSecureStore": "RNSecureStore"
+      }
+    },
+    "windows": {
+      "namespace": "RNSecureStoreCodegen",
+      "outputDirectory": "windows/RNSecureStore/codegen",
+      "separateDataTypes": true
+    }
+  }
+}

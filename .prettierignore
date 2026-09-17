@@ -1,0 +1,6 @@
+node_modules
+lib
+build
+pnpm-lock.yaml
+docs/PLANNING.md
+windows/RNSecureStore/codegen

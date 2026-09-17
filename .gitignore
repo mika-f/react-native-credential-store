@@ -1,0 +1,9 @@
+node_modules/
+lib/
+build/
+*.tgz
+.DS_Store
+windows/**/x64/
+windows/**/ARM64/
+windows/**/Generated Files/
+windows/packages/

@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.20)
+project(RNSecureStoreNativeTests LANGUAGES CXX)
+if(NOT WIN32)
+  message(FATAL_ERROR "Use pnpm test:macos for macOS.")
+endif()
+add_executable(secure-store-tests windows.cpp
+  ../../windows/RNSecureStore/Namespace.cpp
+  ../../windows/RNSecureStore/CredentialStore.cpp)
+target_compile_features(secure-store-tests PRIVATE cxx_std_17)
+target_compile_options(secure-store-tests PRIVATE /utf-8 /W4 /EHsc)
+target_include_directories(secure-store-tests PRIVATE ../../windows/RNSecureStore)
+target_link_libraries(secure-store-tests PRIVATE advapi32 bcrypt version)
+enable_testing()
+add_test(NAME namespace COMMAND secure-store-tests)
+add_test(NAME integration COMMAND secure-store-tests --integration)
