@@ -1,6 +1,6 @@
 {
   "name": "@natsuneko-laboratory/react-native-credential-store",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "OS-backed secure credential storage for React Native macOS and Windows",
   "license": "MIT",
   "repository": {
